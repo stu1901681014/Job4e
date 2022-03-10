@@ -1,0 +1,15 @@
+<div class="navigation-wrapper">
+  <div class="navigation-items">
+    <a class="nav-item" *ngIf="userType === userTypes.ORGANIZATION" routerLink="/organization/my-offers">My Job Offers</a>
+    <a class="nav-item" *ngIf="userType === userTypes.ORGANIZATION" routerLink="/organization/candidacies">Review Candidacies</a>
+
+    <a class="nav-item" *ngIf="userType=== userTypes.USER" routerLink="/offers">Browse Offers</a>
+    <a class="nav-item" *ngIf="userType=== userTypes.USER" routerLink="/my-candidacies">My Candidacies</a>
+
+    <span class="nav-item" (click)="showEditProfileDialog()">Edit Profile</span>
+  </div>
+  <div class="actions">
+    <span class="nav-item" (click)="deactivateAccount()">Deactivate Account</span>
+    <span  class="nav-item" (click)="logout()">Logout</span>
+  </div>
+</div>

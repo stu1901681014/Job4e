@@ -1,0 +1,26 @@
+<mat-card class="candidacy-card-content">
+  <div class="candidacy-title">
+    <span class="title">{{candidacy.offer.title}}</span>
+    <span class="candidate">By: {{candidacy.user.name}}</span>
+  </div>
+
+  <div class="candidacy-actions">
+    <span class="actions" *ngIf="candidacy.status === candidacyStatusEnum.PENDING_APPROVAL; else candidacyStatusLabel">
+      <span class="flex-row" *ngIf="!updateCandidacyStatusLoading; else candidacyStatusUpdateSpinner">
+              <mat-icon class="approve-candidacy" matTooltip="Approve" (click)="updateCandidacyStatus(candidacyStatusEnum.APPROVED)">thumb_up</mat-icon>
+              <mat-icon class="decline-candidacy" matTooltip="Decline" (click)="updateCandidacyStatus(candidacyStatusEnum.DENIED)">thumb_down</mat-icon>
+      </span>
+    </span>
+  </div>
+</mat-card>
+
+<ng-template #candidacyStatusUpdateSpinner>
+  <mat-spinner diameter="30"></mat-spinner>
+</ng-template>
+
+<ng-template #candidacyStatusLabel>
+  <span [ngClass]="{
+          'approved': candidacy.status === candidacyStatusEnum.APPROVED,
+          'denied': candidacy.status === candidacyStatusEnum.DENIED
+        }">{{candidacy.status}}</span>
+</ng-template>

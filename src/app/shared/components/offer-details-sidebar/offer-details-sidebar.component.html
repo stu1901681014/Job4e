@@ -1,0 +1,43 @@
+<div class="offer-details-sidebar-wrapper">
+  <div class="offer-details-content">
+    <h1 cdk-focus-start>{{offer.title}}</h1>
+    <h2>{{offer.user.name}}</h2>
+    <ng-rating-bar [ratingCount]="5"
+                   [value]="offerRatingsCount > 0 ? offerCombinedRating / offerRatingsCount : 0"
+                   (valueChange)="submitRating($event)"
+                   [disabled]="hasAlreadyRated || !canRate"
+                   [matTooltip]="hasAlreadyRated ? 'You cannot rate this offer twice' : ''"
+                   matTooltipPosition="below">
+    </ng-rating-bar>
+
+    <div class="offer-description">
+      <mat-hint class="label">Description</mat-hint>
+      <p class="description">{{offer.description}}</p>
+    </div>
+
+    <div class="offer-description">
+      <mat-hint class="label">Required skills</mat-hint>
+      <mat-chip-list aria-label="Required skills" [selectable]="false">
+        <mat-chip *ngFor="let skill of offer.required_skills" disableRipple>{{skill}}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="offer-description">
+      <mat-hint class="label">Salary</mat-hint>
+      <p class="description">{{offer.salary}}le'a</p>
+    </div>
+  </div>
+
+  <div class="offer-actions" *ngIf="!(submitCandidacyLoading$ | async); else submitCandidacyLoadingTemplate"
+       [matTooltip]="applyButtonTooltip"
+  >
+    <button mat-raised-button *ngIf="canCandidate" color="primary" (click)="applyForJob()"
+            [disabled]="hasAlreadyApplied || !offer.is_active">Apply for this job
+    </button>
+    <button mat-stroked-button *ngIf="canEdit" color="primary" (click)="editOffer()">Edit offer</button>
+  </div>
+</div>
+
+<ng-template #submitCandidacyLoadingTemplate>
+  <mat-spinner [diameter]="30"></mat-spinner>
+</ng-template>

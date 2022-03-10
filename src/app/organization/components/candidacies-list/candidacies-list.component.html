@@ -1,0 +1,7 @@
+<h2 *ngIf="!candidacies?.length && !(candidaciesLoading$ | async)" class="no-items-label">No candidacies in the list</h2>
+<div class="dashboard-wrapper">
+  <mat-progress-bar mode="indeterminate" *ngIf="candidaciesLoading$ | async"></mat-progress-bar>
+  <div class="candidacies-list" *ngIf="candidacies?.length && !(candidaciesLoading$ | async)">
+    <app-candidacy-card *ngFor="let candidacy of candidacies" [candidacy]="candidacy"></app-candidacy-card>
+  </div>
+</div>

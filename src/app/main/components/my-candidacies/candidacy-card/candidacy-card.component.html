@@ -1,0 +1,19 @@
+<mat-card class="candidacy-card-content" *ngIf="candidacy.offer.user">
+  <div class="candidacy-title">
+    <span class="title">{{candidacy.offer.title}}</span>
+    <span class="owner">{{candidacy.offer.user.name}}</span>
+  </div>
+
+  <div class="candidacy-additional">
+    <span class="salary">
+      {{candidacy.offer.salary}}
+      <span class="salary-unit">le'a</span>
+    </span>
+  </div>
+
+  <div class="candidacy-info"  [ngSwitch]="candidacy.status">
+      <span *ngSwitchCase="candidacyStatus.PENDING_APPROVAL" class="pending-approval">Pending approval</span>
+       <span *ngSwitchCase="candidacyStatus.APPROVED" class="approved">Approved</span>
+       <span *ngSwitchCase="candidacyStatus.DENIED" class="denied">Denied</span>
+  </div>
+</mat-card>

@@ -1,0 +1,21 @@
+.offers-list-page-wrapper {
+  height: calc(100vh - 42px);
+
+  .no-items-label {
+    text-align: center;
+  }
+}
+
+mat-sidenav {
+  min-width: 500px;
+}
+
+.offers-list {
+  padding: 50px;
+
+  .list-controls {
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

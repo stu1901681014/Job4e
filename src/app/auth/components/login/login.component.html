@@ -1,0 +1,27 @@
+<div class="login-page-wrapper">
+  <div class="login-page-image">
+    <img src="./assets/images/login-page.svg">
+  </div>
+  <div class="login-page-form-wrapper">
+    <div class="login-page-form-container">
+      <div class="form-content" *ngIf="!(loginLoading$ | async); else loadingSpinner">
+        <h1>Welcome to Job4e - because you need to fill your job4e :)</h1>
+        <h2>Log into your account</h2>
+
+        <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <app-input label="Username" placeholder="Type your username" type="text" [formControl]="usernameFormControl"></app-input>
+          <app-input label="Password" placeholder="Type your password" type="password" [formControl]="passwordFormControl"></app-input>
+
+          <button type="submit" mat-raised-button color="primary" [disabled]="form.invalid">Log in</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingSpinner>
+  <div class="spinner-wrapper">
+    <mat-spinner color="primary"></mat-spinner>
+  </div>
+</ng-template>

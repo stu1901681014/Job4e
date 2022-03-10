@@ -1,0 +1,9 @@
+<div class="input-wrapper">
+  <label>{{label}}</label>
+  <input *ngIf="type !== 'textarea' && type !== 'checkbox'" [type]="type" [placeholder]="placeholder" [class.error]="controlIsInvalid" [formControl]="formControl">
+  <textarea *ngIf="type === 'textarea'" [placeholder]="placeholder" [class.error]="controlIsInvalid" [formControl]="formControl"></textarea>
+  <mat-checkbox *ngIf="type === 'checkbox'" color="primary" [formControl]="formControl">{{placeholder}}</mat-checkbox>
+
+  <span class="error-message" *ngIf="controlIsInvalid && formControl.hasError('required')">{{label}} is required</span>
+  <span class="error-message" *ngIf="controlIsInvalid && formControl.hasError('maxlength')">{{label}} is too long</span>
+</div>

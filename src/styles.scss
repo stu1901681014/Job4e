@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/styles/typography";
+@import "assets/styles/inputs";
+
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+:root {
+  --primary: #673ab7;
+  --error: #ef5350;
+  --success: #81c784;
+  --disabled: #868686;
+  --warning: #ffb300;
+}

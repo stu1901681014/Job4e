@@ -1,0 +1,17 @@
+<mat-sidenav-container class="offers-list-page-wrapper">
+  <mat-sidenav mode="over" position="end" [opened]="!!selectedOffer" (closed)="selectOffer(null)">
+    <app-offer-details-sidebar *ngIf="selectedOffer" [offer]="selectedOffer" [canEdit]="true" (editedOffer)="edit()"></app-offer-details-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <h2 *ngIf="!offers?.length && !(offersLoading$ | async)" class="no-items-label">No offers in the list</h2>
+    <div class="dashboard-wrapper">
+      <mat-progress-bar mode="indeterminate" *ngIf="offersLoading$ | async"></mat-progress-bar>
+      <div class="offers-list" *ngIf="offers?.length && !(offersLoading$ | async)">
+        <div class="list-controls">
+          <button mat-raised-button color="primary" (click)="showAddOfferDialog()">Add new offer</button>
+        </div>
+        <app-offer-card *ngFor="let offer of offers" [offer]="offer" (offerSelected)="selectOffer($event)"></app-offer-card>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
